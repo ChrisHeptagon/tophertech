@@ -6,13 +6,13 @@ import remarkMath from "remark-math";
 var computedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/")
+    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(0).join("/")
   }
 };
 var Post = defineDocumentType(() => ({
   name: "Post",
   contentType: "mdx",
-  filePathPattern: `posts/**/*.mdx`,
+  filePathPattern: `**/*.mdx`,
   fields: {
     title: {
       type: "string",
@@ -36,7 +36,7 @@ var Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: "string",
-      resolve: (post) => `/${post._raw.flattenedPath.split("/").slice(1).join("/")}`
+      resolve: (post) => `/${post._raw.flattenedPath.split("/").slice(0).join("/")}`
     },
     ...computedFields
   }
@@ -53,4 +53,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-C7YOUCBL.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-ZTESLVBT.mjs.map

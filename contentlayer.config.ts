@@ -6,14 +6,14 @@ import remarkMath from 'remark-math'
 const computedFields: ComputedFields = {
   slug: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath.split('/').slice(1).join('/'),
+    resolve: (doc) => doc._raw.flattenedPath.split('/').slice(0).join('/'),
   },
 };
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   contentType: 'mdx',
-  filePathPattern: `posts/**/*.mdx`,
+  filePathPattern: `**/*.mdx`,
   fields: {
     title: {
       type: 'string',
@@ -37,7 +37,7 @@ export const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: (post) => `/${post._raw.flattenedPath.split('/').slice(1).join('/')}`,
+      resolve: (post) => `/${post._raw.flattenedPath.split('/').slice(0).join('/')}`,
     },
     ...computedFields,
   },
